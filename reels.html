@@ -1,1 +1,366 @@
-<!DOCTYPE html><html lang='zh-TW'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>IG SOP</title><style>body{font-family:Arial,'Microsoft JhengHei';background:#f5f7fb;margin:0}.c{max-width:900px;margin:40px auto;padding:20px}h1{text-align:center}.card{background:#fff;padding:20px;border-radius:12px;margin:16px 0;box-shadow:0 3px 10px rgba(0,0,0,.08)}.s{display:inline-block;background:#2563eb;color:#fff;padding:5px 10px;border-radius:999px;font-weight:bold}ul{line-height:1.9}.flow{text-align:center;font-size:20px;line-height:2}.note{background:#fff8db;border-left:5px solid #f5b700;padding:15px;border-radius:8px}</style></head><body><div class='c'><h1>📩 Instagram 留言自動轉私訊 SOP</h1><div class='card'><span class='s'>STEP1</span><h2>前置準備</h2><ul><li>IG切換專業帳號</li><li>開啟允許存取訊息</li><li>連結Facebook粉專</li></ul></div><div class='card'><span class='s'>STEP2</span><h2>連接ManyChat</h2><ul><li>登入ManyChat</li><li>選Instagram</li><li>完成Meta授權</li></ul></div><div class='card'><span class='s'>STEP3</span><h2>建立Automation</h2><ul><li>Automation→New Automation</li><li>Comments觸發</li><li>選貼文/Reels</li></ul></div><div class='card'><span class='s'>STEP4</span><h2>留言關鍵字</h2><ul><li>優惠</li><li>連結</li><li>想要</li><li>+1</li></ul></div><div class='card'><span class='s'>STEP5</span><h2>設定DM</h2><ul><li>第一則：感謝留言</li><li>第二則：商品連結</li><li>加入按鈕</li></ul></div><div class='card'><h2>流程</h2><div class='flow'>留言「優惠」<br>⬇<br>ManyChat偵測<br>⬇<br>公開回覆<br>⬇<br>自動私訊<br>⬇<br>商品頁</div></div><div class='note'><b>測試：</b>用另一個IG帳號留言「優惠」，確認收到私訊即可。</div></div></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>留言變私訊｜QoooQ 內部教學 · ManyChat SOP</title>
+<style>
+  :root{
+    --ink:#1c1620;
+    --paper:#faf6f0;
+    --card:#ffffff;
+    --line:#e7ded0;
+    --muted:#8a7e6f;
+    --coral:#ff4d6d;
+    --coral-soft:#ffe4e9;
+    --violet:#5b4b8a;
+    --violet-soft:#eee9fb;
+    --gold:#d99b2b;
+    --ok:#1f9d6b;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+    line-height:1.75;
+  }
+  h1,h2,h3,.disp{font-family:"Noto Serif TC","Microsoft JhengHei",serif}
+
+  /* ---------- top identity bar ---------- */
+  .idbar{background:var(--ink);color:#efe6d8;padding:10px 28px;font-size:12.5px;
+    display:flex;justify-content:space-between;letter-spacing:.04em}
+  .idbar b{color:var(--gold)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:70px 28px 84px}
+  .hero:before{content:'';position:absolute;right:-120px;top:-120px;width:420px;height:420px;
+    border-radius:50%;background:radial-gradient(circle,var(--coral) 0%,transparent 70%);opacity:.35}
+  .hero:after{content:'';position:absolute;left:-90px;bottom:-140px;width:320px;height:320px;
+    border-radius:50%;background:radial-gradient(circle,var(--violet) 0%,transparent 70%);opacity:.4}
+  .heroInner{position:relative;max-width:960px;margin:0 auto}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.14em;
+    color:var(--gold);border:1px solid rgba(217,155,43,.5);padding:6px 14px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:44px;margin:0 0 16px;line-height:1.35}
+  .hero h1 em{font-style:normal;color:var(--coral)}
+  .hero p{max-width:560px;color:#d8cfc2;margin:0;font-size:16px}
+  .flowChip{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);padding:9px 16px;border-radius:12px;font-size:14px;margin-top:28px}
+  .flowChip span{opacity:.55}
+  .flowChip b{color:#fff;font-weight:700}
+  .flowChip .arrow{color:var(--coral)}
+
+  /* ---------- layout ---------- */
+  .layout{max-width:1180px;margin:-40px auto 0;padding:0 28px 60px;display:grid;
+    grid-template-columns:236px 1fr;gap:26px;position:relative}
+  nav{position:sticky;top:20px;height:max-content;background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:20px 8px;box-shadow:0 14px 30px rgba(28,22,32,.06)}
+  nav .navHead{font-size:12px;letter-spacing:.1em;color:var(--muted);padding:6px 14px 10px}
+  nav a{display:flex;gap:10px;align-items:center;color:#4a4048;text-decoration:none;
+    padding:9px 14px;border-radius:11px;font-size:13.5px}
+  nav a .n{width:20px;height:20px;border-radius:50%;background:var(--violet-soft);color:var(--violet);
+    font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+  nav a:hover{background:var(--coral-soft);color:var(--coral)}
+
+  main{min-width:0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 34px;
+    margin-bottom:22px;box-shadow:0 10px 26px rgba(28,22,32,.045)}
+  .step{display:inline-flex;align-items:center;gap:8px;background:var(--violet-soft);color:var(--violet);
+    font-weight:800;padding:6px 14px;border-radius:999px;font-size:12.5px;letter-spacing:.05em}
+  .step.done{background:var(--coral-soft);color:var(--coral)}
+  h2{font-size:25px;margin:16px 0 6px}
+  .lead{color:var(--muted);margin:0 0 6px;font-size:14.5px}
+
+  ul.check{list-style:none;padding-left:0;margin:16px 0}
+  ul.check li{padding-left:26px;position:relative;margin:8px 0;font-size:14.5px}
+  ul.check li:before{content:'';position:absolute;left:0;top:6px;width:14px;height:14px;
+    border-radius:4px;background:var(--ok);
+    clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0%,45% 68%);}
+  .path{background:var(--ink);color:#efe6d8;font-family:Consolas,monospace;font-size:13px;
+    padding:13px 16px;border-radius:11px;margin:14px 0;overflow-x:auto}
+  .tip,.warn{padding:14px 18px;border-radius:14px;margin:16px 0;font-size:14px}
+  .tip{background:#e9f8f0;border-left:4px solid var(--ok)}
+  .warn{background:#fff3e3;border-left:4px solid var(--gold)}
+
+  /* ---------- browser mock ---------- */
+  .mock{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:20px 0;
+    box-shadow:0 8px 20px rgba(28,22,32,.06)}
+  .mockbar{height:38px;background:#f1ece2;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:7px;padding:0 14px}
+  .dot{width:9px;height:9px;border-radius:50%;background:#d8cfc2}
+  .mockurl{margin-left:10px;font-size:11.5px;color:var(--muted);background:#fff;
+    border:1px solid var(--line);border-radius:7px;padding:3px 10px}
+  .screen{display:grid;grid-template-columns:170px 1fr;min-height:230px}
+  .side{background:var(--ink);color:#cfc4b7;padding:16px 14px;font-size:13px}
+  .side b{color:#fff;display:block;margin-bottom:10px;font-size:13.5px}
+  .menu{padding:8px 10px;border-radius:8px;margin:4px 0}
+  .menu.active{background:#33283b;color:#fff}
+  .main2{padding:20px;background:#fff;position:relative}
+  .ui-title{font-weight:800;font-size:18px;margin-bottom:14px}
+  .row{border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin:9px 0;font-size:13.5px}
+  .btn{display:inline-block;background:var(--coral);color:#fff;padding:8px 15px;border-radius:9px;
+    font-weight:700;font-size:13.5px}
+  .highlight{outline:4px solid rgba(255,77,109,.2);border:2px solid var(--coral)!important;position:relative}
+  .highlight:after{content:'👉 點這裡';position:absolute;right:0;top:-30px;background:var(--coral);
+    color:#fff;padding:3px 10px;border-radius:7px;font-size:11.5px;font-weight:800;white-space:nowrap}
+
+  /* ---------- phone mock ---------- */
+  .phone{width:270px;margin:20px auto;border:8px solid var(--ink);border-radius:32px;
+    background:#fff;overflow:hidden;box-shadow:0 16px 34px rgba(28,22,32,.18)}
+  .phonehead{padding:11px;text-align:center;border-bottom:1px solid var(--line);font-weight:800;font-size:13.5px}
+  .chat{padding:15px;background:#fafafa;min-height:280px}
+  .bubble{max-width:82%;padding:9px 12px;border-radius:14px;margin:8px 0;background:#efe9e1;font-size:13px}
+  .bubble.me{margin-left:auto;background:var(--coral-soft);color:#8a3348}
+  .quick{border:1px solid var(--coral);color:var(--coral);text-align:center;padding:8px;
+    border-radius:9px;margin-top:8px;background:#fff;font-weight:700;font-size:12.5px}
+
+  .flow{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:18px 0}
+  .node{background:#fff;border:1px solid var(--line);padding:11px 15px;border-radius:12px;
+    font-weight:700;font-size:13.5px}
+  .arrow2{color:var(--coral);font-size:20px}
+  .copy{background:#faf6ef;border:1px dashed #cdbfa8;border-radius:12px;padding:14px 16px;
+    white-space:pre-line;font-size:13.5px;margin:12px 0}
+
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px}
+  th,td{border-bottom:1px solid var(--line);text-align:left;padding:11px}
+  th{background:#f6f0e6;font-size:12.5px;letter-spacing:.03em;color:var(--muted)}
+
+  .small{font-size:12.5px;color:var(--muted)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 28px 40px;font-size:12.5px;color:var(--muted)}
+
+  @media(max-width:860px){
+    .layout{grid-template-columns:1fr}
+    nav{position:relative;top:0}
+    .screen{grid-template-columns:1fr}
+    .side{display:none}
+    .hero h1{font-size:32px}
+    .card{padding:24px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="idbar"><span>QoooQ 夸克創意 <b>內部教學</b> · 客服 / 社群小組適用</span><span>更新：2026-07-17</span></div>
+
+<section class="hero">
+  <div class="heroInner">
+    <div class="eyebrow">● SOP · IG 自動化</div>
+    <h1>粉絲留言一個關鍵字，<br>就自動收到 <em>私訊</em> 與商品連結</h1>
+    <p>這份教學是給組內同仁（A／B／C／D 組皆適用）串接 ManyChat 的標準流程，跟著步驟做一次就能上手，之後每檔活動都能重複使用。</p>
+    <div class="flowChip">
+      <b>留言「優惠」</b><span class="arrow">→</span><b>ManyChat 偵測</b><span class="arrow">→</span><b>公開回覆</b><span class="arrow">→</span><b>自動私訊</b><span class="arrow">→</span><b>商品頁</b>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+  <nav>
+    <div class="navHead">教學目錄</div>
+    <a href="#s1"><span class="n">1</span>IG 前置設定</a>
+    <a href="#s2"><span class="n">2</span>連接 ManyChat</a>
+    <a href="#s3"><span class="n">3</span>建立自動化</a>
+    <a href="#s4"><span class="n">4</span>選擇貼文／Reels</a>
+    <a href="#s5"><span class="n">5</span>設定關鍵字</a>
+    <a href="#s6"><span class="n">6</span>公開留言回覆</a>
+    <a href="#s7"><span class="n">7</span>私訊內容設計</a>
+    <a href="#s8"><span class="n">8</span>測試與上線</a>
+    <a href="#faq"><span class="n">!</span>常見問題排除</a>
+  </nav>
+
+  <main>
+
+    <section class="card" id="s1">
+      <span class="step">STEP 1</span>
+      <h2>完成 Instagram 前置設定</h2>
+      <p class="lead">操作帳號：客戶 / 品牌的官方 IG（不是自己的私人帳號）</p>
+      <ul class="check">
+        <li>帳號已切換為「專業帳號」（商業或創作者帳號）</li>
+        <li>開啟允許第三方工具存取訊息</li>
+        <li>最好已連結對應的 Facebook 粉絲專頁</li>
+      </ul>
+      <h3>切換專業帳號</h3>
+      <div class="path">Instagram → 個人檔案 → ☰ → 設定和動態 → 帳號類型和工具 → 切換為專業帳號</div>
+      <h3>開啟訊息存取權限</h3>
+      <div class="path">Instagram → 設定和動態 → 訊息和限時動態回覆 → 已連結的工具 → 允許存取訊息</div>
+      <div class="mock">
+        <div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mockurl">instagram.com/accounts/settings</span></div>
+        <div class="screen">
+          <div class="side"><b>Instagram 設定</b>
+            <div class="menu">帳號中心</div>
+            <div class="menu active">訊息和限時動態回覆</div>
+          </div>
+          <div class="main2">
+            <div class="ui-title">已連結的工具</div>
+            <div class="row highlight">允許存取訊息　<strong>開啟</strong></div>
+            <div class="small">介面文字可能因 IG 版本略有不同，找關鍵字「訊息」「工具」即可。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="s2">
+      <span class="step">STEP 2</span>
+      <h2>登入並連接 ManyChat</h2>
+      <ol>
+        <li>前往 ManyChat（manychat.com），選擇免費開始</li>
+        <li>以品牌的 Facebook 或 Instagram 帳號登入</li>
+        <li>選擇要連接的 Instagram 帳號</li>
+        <li>在 Meta 授權頁中，把訊息、留言、帳號管理權限<strong>全部允許</strong></li>
+      </ol>
+      <div class="mock">
+        <div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mockurl">app.manychat.com/settings</span></div>
+        <div class="screen">
+          <div class="side"><b>ManyChat</b>
+            <div class="menu active">Settings</div>
+            <div class="menu">Instagram</div>
+          </div>
+          <div class="main2">
+            <div class="ui-title">Connect Instagram</div>
+            <div class="row">IG 帳號：@brand_official</div>
+            <span class="btn highlight">Connect</span>
+          </div>
+        </div>
+      </div>
+      <div class="warn"><b>常見卡關：</b>看得到帳號但按不了私訊，通常是授權頁權限沒勾滿，或 Step 1 的「允許存取訊息」沒開。</div>
+    </section>
+
+    <section class="card" id="s3">
+      <span class="step">STEP 3</span>
+      <h2>建立留言自動化</h2>
+      <div class="path">ManyChat → Automation → New Automation</div>
+      <p>第一次操作建議直接選內建的「留言轉私訊」範本，不用從零開始拉流程。</p>
+      <div class="mock">
+        <div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mockurl">app.manychat.com/automation</span></div>
+        <div class="screen">
+          <div class="side"><b>ManyChat</b>
+            <div class="menu active">Automation</div>
+            <div class="menu">Contacts</div>
+          </div>
+          <div class="main2">
+            <div class="ui-title">My Automations</div>
+            <span class="btn highlight">＋ New Automation</span>
+            <div class="row">Auto-DM links from comments</div>
+            <div class="row">Start from scratch</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="s4">
+      <span class="step">STEP 4</span>
+      <h2>選擇要觸發的貼文或 Reels</h2>
+      <table>
+        <tr><th>選項</th><th>用途</th><th>組內建議</th></tr>
+        <tr><td>指定貼文／Reels</td><td>只有這一篇會觸發</td><td>每檔活動的標準做法</td></tr>
+        <tr><td>所有貼文／Reels</td><td>整個帳號都可能觸發</td><td>熟悉流程後再考慮，容易誤觸發</td></tr>
+        <tr><td>下一篇貼文</td><td>先建好流程再發文</td><td>適合活動當天卡點發布</td></tr>
+      </table>
+      <div class="mock">
+        <div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mockurl">app.manychat.com/automation/trigger</span></div>
+        <div class="main2">
+          <div class="ui-title">Choose a post or reel</div>
+          <div class="row highlight">● A specific post or reel</div>
+          <div class="row">○ Any post or reel</div>
+          <div class="row">○ Next post or reel</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="s5">
+      <span class="step">STEP 5</span>
+      <h2>設定留言關鍵字</h2>
+      <p class="lead">建議一次放 4～6 個常見說法，涵蓋粉絲不同的打字習慣</p>
+      <div class="copy">優惠
+連結
+想要
++1
+哪裡買
+價格</div>
+      <div class="mock">
+        <div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mockurl">app.manychat.com/automation/condition</span></div>
+        <div class="main2">
+          <div class="ui-title">Comment condition</div>
+          <div class="row highlight">Comment contains any of these words</div>
+          <div class="row">優惠　連結　想要　+1</div>
+        </div>
+      </div>
+      <div class="warn"><b>不要一開始就選「任何留言」：</b>否則粉絲留「哈哈」或標記朋友，都會收到購買私訊，觀感很差。</div>
+    </section>
+
+    <section class="card" id="s6">
+      <span class="step">STEP 6</span>
+      <h2>設定公開留言的自動回覆</h2>
+      <p class="lead">這則會公開顯示在留言區，讓粉絲知道要去看私訊</p>
+      <div class="copy">已經私訊你囉，請查看收件匣 ✨
+
+連結傳給你了，記得看一下私訊！
+
+收到！詳細資訊已經傳到私訊囉 🙌</div>
+      <div class="tip">建議準備 2～3 個版本輪替顯示，看起來比較像真人在回覆。</div>
+    </section>
+
+    <section class="card" id="s7">
+      <span class="step">STEP 7</span>
+      <h2>設計第一則與第二則私訊</h2>
+      <p class="lead">第一則負責「打招呼＋引導按鈕」，第二則才放實際連結，轉換率會比一次塞滿資訊更好</p>
+      <div class="phone">
+        <div class="phonehead">@brand_official</div>
+        <div class="chat">
+          <div class="bubble">嗨～收到你的留言了！<br><br>點下方按鈕，我就把限定優惠傳給你 👇</div>
+          <div class="quick">我要優惠連結</div>
+          <div class="bubble me">我要優惠連結</div>
+          <div class="bubble">這裡是你要的優惠 ✨<br><br>點下方即可查看商品：</div>
+          <div class="quick">立即查看商品</div>
+        </div>
+      </div>
+      <h3>可直接複製使用</h3>
+      <div class="copy">第一則：
+嗨～收到你的留言了！
+點擊下方按鈕，我就把這次的限定優惠傳給你 👇
+
+按鈕文字：我要優惠連結
+
+第二則：
+這裡是你要的限定優惠 ✨
+點擊下方即可查看商品及活動內容：
+
+按鈕文字：立即查看商品</div>
+      <h3>連結記得加 UTM，方便後續統計曝光成效</h3>
+      <div class="copy">https://品牌網址.com/?utm_source=instagram&utm_medium=comment_dm&utm_campaign=活動名稱&utm_content=reel01</div>
+    </section>
+
+    <section class="card" id="s8">
+      <span class="step step done">STEP 8</span>
+      <h2>測試並正式上線</h2>
+      <ol>
+        <li>點 Preview／Test 先自我檢查一次</li>
+        <li>確認狀態已切換為 Live／Published</li>
+        <li>用另一個「非管理員」的 IG 帳號測試（不要用自己綁定的帳號）</li>
+        <li>在指定 Reels 下方留言關鍵字，例如「優惠」</li>
+        <li>檢查公開回覆是否出現、私訊是否有進來</li>
+        <li>點擊按鈕，確認第二則訊息與連結是否正常</li>
+      </ol>
+      <div class="tip"><b>驗收標準：</b>留言後能收到 DM、按鈕可點、連結正確、手機上畫面正常顯示，四項都通過才算完成。</div>
+    </section>
+
+    <section class="card" id="faq">
+      <span class="step">常見問題</span>
+      <h2>完全沒觸發時，依序檢查</h2>
+      <table>
+        <tr><th>狀況</th><th>檢查項目</th></tr>
+        <tr><td>留言後完全沒反應</td><td>Automation 是否已經 Publish／Set Live</td></tr>
+        <tr><td>有公開回覆但沒收到私訊</td><td>Step 1 的訊息存取權限、Step 2 的 ManyChat 授權是否完整</td></tr>
+        <tr><td>其他貼文也被觸發</td><td>Step 4 是否誤選成 Any post or reel</td></tr>
+        <tr><td>部分留言沒被抓到</td><td>Step 5 補上更多常見寫法，如「求連結」「我要」</td></tr>
+        <tr><td>自己測試收不到</td><td>務必換另一個帳號測試，並留意「陌生訊息邀請」匣</td></tr>
+      </table>
+      <div class="warn">有任何步驟卡住，先截圖當下畫面丟到組內群組，再標註是「STEP 幾」，方便互相支援排查。</div>
+    </section>
+
+  </main>
+</div>
+
+<footer>QoooQ 夸克創意內部教學文件，僅供組內使用。介面截圖為示意畫面，ManyChat／Instagram 實際介面更新後按鈕位置可能略有不同。</footer>
+
+</body>
+</html>
