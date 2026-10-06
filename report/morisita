@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夸克創意 QoooQ CREATIVE | 森下仁丹 短影音流量操作策略</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:wght@400;700&display=swap');
+
+        :root {
+            --gold: #B8892A;
+            --gold-light: #D4A84B;
+            --cream: #FAF6EF;
+            --warm-white: #FFFDF9;
+            --brown-deep: #3B2A14;
+            --brown-mid: #6B4C28;
+            --brown-light: #C4A882;
+            --text-main: #2E1F0E;
+            --text-muted: #7A6248;
+            --border: #E0CDB0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-main);
+            padding: 48px 24px;
+            line-height: 1.8;
+        }
+
+        .container {
+            background-color: var(--warm-white);
+            max-width: 860px;
+            margin: 0 auto;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background-color: var(--brown-deep);
+            padding: 44px 60px 36px;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, transparent 100%);
+            margin-top: 28px;
+        }
+        .header-eyebrow {
+            font-size: 0.7em;
+            letter-spacing: 0.3em;
+            color: var(--brown-light);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.75em;
+            color: var(--warm-white);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .header-sub {
+            margin-top: 8px;
+            font-size: 0.85em;
+            color: var(--gold-light);
+            letter-spacing: 0.05em;
+        }
+
+        /* ── BODY ── */
+        .body {
+            padding: 48px 60px;
+        }
+
+        /* ── SECTION ── */
+        .section {
+            margin-bottom: 52px;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 0.65em;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold-light);
+            padding-bottom: 3px;
+            margin-bottom: 14px;
+        }
+        .section h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.3em;
+            color: var(--brown-deep);
+            margin-bottom: 16px;
+        }
+        .section p strong { color: var(--brown-deep); }
+        .section p {
+            font-size: 0.92em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        /* ── NOTICE BOX ── */
+        .notice {
+            background-color: #FBF5E8;
+            border-left: 4px solid var(--gold);
+            padding: 18px 22px;
+            border-radius: 2px;
+            margin-bottom: 32px;
+        }
+        .notice p {
+            font-size: 0.88em;
+            color: var(--brown-mid);
+            margin: 0;
+            line-height: 1.9;
+        }
+        .notice strong { color: var(--brown-deep); }
+
+        /* ── SERVICE CARDS ── */
+        .service-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .service-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: var(--brown-deep);
+            padding: 14px 22px;
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+        }
+        .card-num {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.1em;
+            color: var(--gold-light);
+            min-width: 24px;
+        }
+        .card-title {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: var(--warm-white);
+            letter-spacing: 0.03em;
+        }
+        .card-price {
+            margin-left: auto;
+            font-size: 0.82em;
+            color: var(--gold-light);
+            white-space: nowrap;
+        }
+        .card-body {
+            padding: 18px 22px;
+            background-color: var(--warm-white);
+        }
+        .card-body ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card-body ul li {
+            font-size: 0.88em;
+            color: var(--text-muted);
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            gap: 8px;
+        }
+        .card-body ul li:last-child { border-bottom: none; }
+        .card-body ul li::before {
+            content: '—';
+            color: var(--brown-light);
+            flex-shrink: 0;
+        }
+        .card-body .note {
+            margin-top: 12px;
+            font-size: 0.8em;
+            color: var(--brown-light);
+            font-style: italic;
+        }
+        .card-body li strong { color: var(--brown-deep); }
+        .card-sub {
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            margin: 22px 0 6px;
+        }
+        .card-sub:first-child { margin-top: 0; }
+        .card-body .notice { margin: 14px 0 0; }
+
+        /* ── PRICE TABLE ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+        thead tr {
+            background-color: var(--brown-deep);
+        }
+        th {
+            padding: 11px 16px;
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--gold-light);
+            text-align: left;
+            text-transform: uppercase;
+        }
+        td {
+            padding: 11px 16px;
+            font-size: 0.88em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background-color: #FBF8F2; }
+        td strong { color: var(--brown-deep); }
+
+
+        /* ── DARK BAND ── */
+        .band {
+            background-color: var(--brown-deep);
+            margin: -48px -60px 52px;
+            padding: 48px 60px 44px;
+            color: var(--warm-white);
+        }
+        .band .section-label { color: var(--gold-light); border-color: var(--gold); }
+        .band h2 { color: var(--warm-white); }
+        .band .lead { color: var(--brown-light); font-size: 0.92em; margin-bottom: 26px; }
+
+        .law-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .law {
+            background: rgba(255, 253, 249, 0.06);
+            border: 1px solid rgba(212, 168, 75, 0.25);
+            border-radius: 4px;
+            padding: 18px 20px;
+        }
+        .law-num {
+            font-family: 'Noto Serif TC', serif;
+            color: var(--gold-light);
+            font-size: 0.95em;
+        }
+        .law-title {
+            font-weight: 700;
+            font-size: 1em;
+            color: var(--warm-white);
+            margin: 4px 0 6px;
+            line-height: 1.5;
+        }
+        .law-desc { font-size: 0.82em; color: var(--brown-light); line-height: 1.75; }
+
+        
+        .band { margin-top: -48px; }
+        .band .lead { margin-bottom: 22px; }
+
+        /* dual-track diagram */
+        .flow { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; align-items: center; }
+        .flow-src { background: var(--gold-light); color: var(--brown-deep); border-radius: 4px; padding: 20px; text-align: center; }
+        .flow-src b { display: block; font-size: 1.05em; }
+        .flow-src span { font-size: 0.8em; }
+        .flow-arrow { text-align: center; color: var(--gold-light); font-size: 1.4em; }
+        .flow-outs { display: grid; gap: 10px; }
+        .flow-out { border: 1px solid rgba(212,168,75,.35); background: rgba(255,253,249,.06); border-radius: 4px; padding: 12px 16px; }
+        .flow-out b { color: var(--warm-white); font-size: 0.92em; }
+        .flow-out p { color: var(--brown-light); font-size: 0.8em; margin: 2px 0 0; line-height: 1.6; }
+        .formula { margin-top: 22px; text-align: center; font-family: 'Noto Serif TC', serif; font-size: 1.25em; color: var(--warm-white); letter-spacing: .05em; }
+        .formula em { font-style: normal; color: var(--gold-light); }
+        .formula-sub { text-align: center; font-size: .78em; color: var(--brown-light); margin-top: 2px; }
+
+        /* formula cards */
+        .grid4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        .fcard { border: 1px solid var(--border); border-radius: 4px; padding: 18px 20px; background: var(--warm-white); border-top: 3px solid var(--gold); }
+        .fcard .n { font-family: 'Noto Serif TC', serif; color: var(--gold); }
+        .fcard h3 { font-size: 1em; color: var(--brown-deep); margin: 2px 0 4px; }
+        .fcard p { font-size: .82em !important; margin: 0 !important; line-height: 1.75; }
+
+        /* account timeline */
+        .acct { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 3px solid var(--gold); margin-bottom: 22px; }
+        .acct > div { padding: 16px 18px 0 0; position: relative; }
+        .acct > div::before { content: ''; position: absolute; top: -9px; left: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--warm-white); border: 3px solid var(--gold); }
+        .acct > div.alert::before { border-color: #B5523B; background: #B5523B; }
+        .acct .when { font-size: .72em; letter-spacing: .15em; color: var(--gold); font-weight: 700; margin-top: 6px; }
+        .acct .alert .when { color: #B5523B; }
+        .acct h3 { font-size: .98em; color: var(--brown-deep); margin: 2px 0 4px; }
+        .acct p { font-size: .82em !important; margin: 0 !important; line-height: 1.75; }
+
+        /* platform */
+        .plat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .pcard { border: 1px solid var(--border); border-radius: 4px; padding: 16px 18px; }
+        .pcard .name { font-weight: 700; color: var(--brown-deep); }
+        .pcard .lvl { font-size: .75em; font-weight: 700; letter-spacing: .08em; margin: 2px 0 6px; }
+        .lvl.hi { color: var(--gold); } .lvl.mid { color: var(--text-muted); }
+        .meter { height: 6px; background: #EFE5D3; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+        .meter i { display: block; height: 100%; background: var(--gold); border-radius: 3px; }
+        .pcard p { font-size: .8em !important; margin: 0 !important; line-height: 1.7; }
+        .tbd { margin-top: 14px; border: 1px dashed var(--brown-light); border-radius: 4px; padding: 12px 16px; font-size: .85em; color: var(--brown-light); text-align: center; }
+
+        /* charts */
+        .chart-box { border: 1px solid var(--border); border-radius: 4px; padding: 18px 18px 8px; background: var(--warm-white); margin-bottom: 14px; position: relative; }
+        .chart-title { font-weight: 700; color: var(--brown-deep); font-size: .95em; }
+        .chart-sub { font-size: .75em; color: var(--text-muted); margin-bottom: 6px; }
+        .legend { display: flex; gap: 16px; font-size: .75em; color: var(--text-muted); margin-bottom: 4px; }
+        .legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .legend i { width: 18px; height: 0; border-top: 2.5px solid #C08A1E; display: inline-block; }
+        .legend i.ref { border-top: 2px dashed #9C8670; }
+        .chart { width: 100%; height: auto; display: block; }
+        .chart .ax { font-size: 11px; fill: #9C8670; font-family: 'Noto Sans TC', sans-serif; }
+        .chart .val { font-size: 12px; fill: #2E1F0E; font-weight: 700; font-family: 'Noto Sans TC', sans-serif; }
+        .chart .lab { font-size: 12px; font-weight: 700; font-family: 'Noto Sans TC', sans-serif; }
+        .chart .band-l { font-size: 11px; fill: #7A6248; font-family: 'Noto Sans TC', sans-serif; }
+        .chart .hov { cursor: default; }
+        .chart g.hov:hover path { opacity: .85; }
+        .tip { position: absolute; pointer-events: none; background: var(--brown-deep); color: var(--warm-white); font-size: .75em; padding: 6px 10px; border-radius: 3px; white-space: nowrap; opacity: 0; transition: opacity .12s; z-index: 5; }
+        details.tbl { font-size: .78em; color: var(--text-muted); margin: 4px 0 6px; }
+        details.tbl summary { cursor: pointer; color: var(--gold); }
+        details.tbl table { margin-top: 6px; }
+        details.tbl td, details.tbl th { padding: 6px 10px; }
+        .obs { list-style: none; padding: 0; margin: 6px 0 0; }
+        .obs li { font-size: .88em; color: var(--text-muted); padding: 8px 0 8px 22px; border-bottom: 1px dashed var(--border); position: relative; }
+        .obs li:last-child { border-bottom: none; }
+        .obs li::before { content: ''; position: absolute; left: 4px; top: 17px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+        .obs li.down::before { background: #B5523B; }
+        .obs strong { color: var(--brown-deep); }
+        .ask { margin-top: 18px; border: 1px solid var(--gold-light); background: #FBF5E8; border-radius: 4px; padding: 16px 20px; }
+        .ask .k { font-size: .7em; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+        .ask p { margin: 4px 0 0 !important; font-size: .88em !important; color: var(--brown-mid) !important; }
+
+        /* proposals */
+        .prop { border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 18px; }
+        .prop-h { background: var(--brown-deep); padding: 14px 22px; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+        .prop-h .tag { font-family: 'Noto Serif TC', serif; color: var(--gold-light); }
+        .prop-h .t { color: var(--warm-white); font-weight: 700; }
+        .prop-h .badge { margin-left: auto; font-size: .78em; color: var(--brown-deep); background: var(--gold-light); padding: 2px 10px; border-radius: 10px; font-weight: 700; }
+        .prop-b { padding: 18px 22px; }
+        .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+        .kpi { background: #FBF5E8; border-radius: 4px; padding: 12px; text-align: center; }
+        .kpi .v { font-family: 'Noto Serif TC', serif; font-size: 1.5em; font-weight: 700; color: var(--gold); line-height: 1.2; }
+        .kpi .v small { font-size: .5em; }
+        .kpi .l { font-size: .72em; color: var(--text-muted); }
+        .prop-b ul { list-style: none; padding: 0; }
+        .prop-b li { font-size: .88em; color: var(--text-muted); padding: 6px 0 6px 18px; border-bottom: 1px dashed var(--border); position: relative; }
+        .prop-b li:last-child { border-bottom: none; }
+        .prop-b li::before { content: '—'; position: absolute; left: 0; color: var(--brown-light); }
+        .prop-b li strong { color: var(--brown-deep); }
+        .guarantee { margin-top: 14px; border-left: 4px solid var(--gold); background: #FBF5E8; padding: 12px 16px; font-size: .86em; color: var(--brown-mid); }
+        .guarantee strong { color: var(--brown-deep); }
+        .quote { font-family: 'Noto Serif TC', serif; font-size: 1.02em; color: var(--brown-deep); border-left: 3px solid var(--gold); padding: 6px 0 6px 16px; margin-bottom: 22px; }
+        .quote small { display: block; font-family: 'Noto Sans TC', sans-serif; font-size: .72em; color: var(--text-muted); margin-top: 2px; }
+/* ── DIVIDER ── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 0 40px 0;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background-color: var(--brown-deep);
+            padding: 28px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-brand {
+            font-family: 'Noto Serif TC', serif;
+            color: var(--warm-white);
+            font-size: 0.95em;
+            font-weight: 700;
+        }
+        .footer-tagline {
+            font-size: 0.75em;
+            color: var(--brown-light);
+            letter-spacing: 0.1em;
+        }
+        .footer-contact {
+            font-size: 0.78em;
+            color: var(--gold-light);
+            text-align: right;
+        }
+
+        
+        @media (max-width: 600px) {
+            .body, .header, .footer { padding-left: 24px; padding-right: 24px; }
+            .band { margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; }
+            .footer { flex-direction: column; text-align: center; }
+            .footer-contact { text-align: center; }
+            th, td { padding: 9px 10px; }
+            .flow { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+            .grid4, .plat { grid-template-columns: 1fr; }
+            .acct { grid-template-columns: 1fr; border-top: none; border-left: 3px solid var(--gold); padding-left: 18px; }
+            .acct > div { padding: 0 0 16px; }
+            .acct > div::before { top: 4px; left: -28px; }
+            .acct .when { margin-top: 0; }
+            .kpis { gap: 6px; }
+            .kpi .v { font-size: 1.15em; }
+            .chart-box { padding: 14px 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="header-eyebrow">Strategy Proposal · 流量操作策略提案</div>
+        <h1>夸克創意 QoooQ CREATIVE<br>森下仁丹 短影音／Threads<br>流量操作策略提案</h1>
+        <div class="header-sub">自然流量 × 廣告素材 雙軌操作</div>
+    </div>
+
+    <div class="body">
+
+        <!-- 一、操作模式 -->
+        <div class="band">
+            <div class="section-label">Model</div>
+            <h2>一、我們的操作模式</h2>
+            <p class="lead">以短影音與 Threads 做自然流量，同一批內容同時作為廣告素材投放，一次製作、兩種效益。</p>
+            <div class="flow">
+                <div class="flow-src"><b>短影音／Threads 內容</b><span>企劃 → 拍攝 → 剪輯</span></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-outs">
+                    <div class="flow-out"><b>自然流量</b><p>素人帳號多平台投稿，創造真實觸及、分享與討論度</p></div>
+                    <div class="flow-out"><b>廣告素材</b><p>表現好的內容直接作為廣告素材投放，優化 CPO</p></div>
+                </div>
+            </div>
+            <div class="formula">自然流量 ＝ <em>內容</em> × <em>帳號</em></div>
+            <div class="formula-sub">兩者缺一不可，以下分別說明</div>
+        </div>
+
+        <!-- 二、內容 -->
+        <div class="section">
+            <div class="section-label">Content</div>
+            <h2>二、內容：現階段的爆款公式</h2>
+            <p>經過一年的實際操作與數據累積，我們整理出目前最有效的內容方向：</p>
+            <div class="grid4">
+                <div class="fcard"><span class="n">01</span><h3>超口語化表現</h3><p>像朋友聊天一樣講話，降低距離感，讓觀眾願意停下來看完。</p></div>
+                <div class="fcard"><span class="n">02</span><h3>少講商品專業介紹</h3><p>不能像 CM，避免明顯廣告感；觀眾一察覺是業配就會滑走。</p></div>
+                <div class="fcard"><span class="n">03</span><h3>強烈的 BA 與 CTA</h3><p>使用前後對比（Before / After）清楚有感，結尾明確告訴觀眾下一步。</p></div>
+                <div class="fcard"><span class="n">04</span><h3>有趣的訴求切點與故事</h3><p>用生活情境與故事帶出產品，讓內容本身就值得看、值得分享。</p></div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 三、帳號 -->
+        <div class="section">
+            <div class="section-label">Accounts</div>
+            <h2>三、帳號：現況與規劃</h2>
+            <p>帳號健康度直接影響自然流量。以下是我們帳號經營的實際狀況：</p>
+            <div class="acct">
+                <div class="alert"><div class="when">2026 年 2–3 月</div><h3>優質帳號無預警被 BAN</h3><p>經營近一年、表現最好的帳號遭平台無預警停權。</p></div>
+                <div><div class="when">4 月起</div><h3>重新培養帳號</h3><p>帳號實質上從 4 月開始重新經營，目前流量與粉絲數仍在累積中。</p></div>
+                <div><div class="when">接下來</div><h3>持續養號、提升健康度</h3><p>需要再花一段時間培養，讓帳號健康度與推播量回升。</p></div>
+            </div>
+            <div class="notice">
+                <p><strong>智科合作帳號狀況良好：</strong>先前配合的智科帳號都未受影響，流量一直維持不錯，破萬粉絲的帳號非常多。但因預算門檻，智科帳號目前只承接 <strong>20 萬以上預算的 TTO 案件</strong>，現有預算無法發案給他們，這部分相當可惜。</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 四、媒體 -->
+        <div class="section">
+            <div class="section-label">Platforms</div>
+            <h2>四、媒體：各平台表現</h2>
+            <div class="plat">
+                <div class="pcard"><div class="name">Instagram Reels</div><div class="lvl hi">流量最大宗</div><div class="meter"><i style="width:90%"></i></div><p>目前流量主要來源，爆款機率最高。</p></div>
+                <div class="pcard"><div class="name">YouTube Shorts／TikTok</div><div class="lvl mid">爆款相對較弱</div><div class="meter"><i style="width:45%"></i></div><p>有基本流量，但爆款表現不如 Reels。</p></div>
+                <div class="pcard"><div class="name">Threads</div><div class="lvl mid">持續變化中</div><div class="meter"><i style="width:60%"></i></div><p>演算法與流量型態一直在變，持續觀察調整。</p></div>
+            </div>
+            <div class="tbd">各平台操作建議（後補）</div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 五、流量與成效 -->
+        <div class="section">
+            <div class="section-label">Performance</div>
+            <h2>五、流量與成效變化：以 5010 益生菌為例</h2>
+
+            <div class="chart-box">
+                <div class="chart-title">短影音每月曝光</div>
+                <div class="chart-sub">單位：萬次｜6 月起每月穩定破 10 萬</div>
+                <svg viewBox="0 0 640 280" class="chart" role="img" aria-label="5010益生菌每月短影音曝光">
+<line x1="44" x2="624" y1="244.0" y2="244.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="36" y="248.0" text-anchor="end" class="ax">0</text>
+<line x1="44" x2="624" y1="200.0" y2="200.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="36" y="204.0" text-anchor="end" class="ax">5</text>
+<line x1="44" x2="624" y1="156.0" y2="156.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="36" y="160.0" text-anchor="end" class="ax">10</text>
+<line x1="44" x2="624" y1="112.0" y2="112.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="36" y="116.0" text-anchor="end" class="ax">15</text>
+<line x1="44" x2="624" y1="68.0" y2="68.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="36" y="72.0" text-anchor="end" class="ax">20</text>
+<line x1="44" x2="624" y1="24.0" y2="24.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="36" y="28.0" text-anchor="end" class="ax">25</text>
+<text x="36" y="14" text-anchor="end" class="ax">萬</text>
+<g class="hov" data-tip="5010益生菌 5月｜曝光 約 3 萬以下"><rect x="69.0" y="24" width="66" height="220" fill="transparent"/><path d="M79.0,244 V221.6 Q79.0,217.6 83.0,217.6 H121.0 Q125.0,217.6 125.0,221.6 V244 Z" fill="#D9C7A6"/></g>
+<text x="102.0" y="209.6" text-anchor="middle" class="val">< 3 萬</text>
+<text x="102.0" y="268" text-anchor="middle" class="ax">5月</text>
+<g class="hov" data-tip="5010益生菌 6月｜曝光 約 13 萬"><rect x="185.0" y="24" width="66" height="220" fill="transparent"/><path d="M195.0,244 V133.6 Q195.0,129.6 199.0,129.6 H237.0 Q241.0,129.6 241.0,133.6 V244 Z" fill="#C08A1E"/></g>
+<text x="218.0" y="121.6" text-anchor="middle" class="val">13 萬</text>
+<text x="218.0" y="268" text-anchor="middle" class="ax">6月</text>
+<g class="hov" data-tip="5010益生菌 7月｜曝光 約 23 萬"><rect x="301.0" y="24" width="66" height="220" fill="transparent"/><path d="M311.0,244 V45.6 Q311.0,41.6 315.0,41.6 H353.0 Q357.0,41.6 357.0,45.6 V244 Z" fill="#C08A1E"/></g>
+<text x="334.0" y="33.6" text-anchor="middle" class="val">23 萬</text>
+<text x="334.0" y="268" text-anchor="middle" class="ax">7月</text>
+<g class="hov" data-tip="5010益生菌 8月｜曝光 101,187"><rect x="417.0" y="24" width="66" height="220" fill="transparent"/><path d="M427.0,244 V159.1 Q427.0,155.1 431.0,155.1 H469.0 Q473.0,155.1 473.0,159.1 V244 Z" fill="#C08A1E"/></g>
+<text x="450.0" y="147.1" text-anchor="middle" class="val">10.1 萬</text>
+<text x="450.0" y="268" text-anchor="middle" class="ax">8月</text>
+<g class="hov" data-tip="5010益生菌 9月｜曝光 182,724"><rect x="533.0" y="24" width="66" height="220" fill="transparent"/><path d="M543.0,244 V87.0 Q543.0,83.0 547.0,83.0 H585.0 Q589.0,83.0 589.0,87.0 V244 Z" fill="#C08A1E"/></g>
+<text x="566.0" y="75.0" text-anchor="middle" class="val">18.3 萬</text>
+<text x="566.0" y="268" text-anchor="middle" class="ax">9月</text>
+<line x1="44" x2="624" y1="244" y2="244" stroke="#C4A882" stroke-width="1"/>
+</svg>
+            </div>
+
+            <div class="chart-box">
+                <div class="chart-title">廣告 CPO 變化：2026 vs 2025 同期</div>
+                <div class="chart-sub">CPO 越低代表每筆訂單成本越低、成效越好</div>
+                <div class="legend"><span><i></i>2026</span><span><i class="ref"></i>2025 同期</span></div>
+                <svg viewBox="0 0 640 300" class="chart" role="img" aria-label="CPO 2026 與 2025 同期比較">
+<rect x="349.0" y="28" width="132.0" height="236" fill="#EAF1E4"/>
+<text x="415.0" y="42" text-anchor="middle" class="band-l">成效轉好</text>
+<rect x="481.0" y="28" width="99.0" height="236" fill="#F7E6DF"/>
+<text x="530.5" y="42" text-anchor="middle" class="band-l">買單轉弱</text>
+<line x1="52" x2="580" y1="264.0" y2="264.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="44" y="268.0" text-anchor="end" class="ax">0</text>
+<line x1="52" x2="580" y1="185.3" y2="185.3" stroke="#EDE2CF" stroke-width="1"/>
+<text x="44" y="189.3" text-anchor="end" class="ax">5,000</text>
+<line x1="52" x2="580" y1="106.7" y2="106.7" stroke="#EDE2CF" stroke-width="1"/>
+<text x="44" y="110.7" text-anchor="end" class="ax">10,000</text>
+<line x1="52" x2="580" y1="28.0" y2="28.0" stroke="#EDE2CF" stroke-width="1"/>
+<text x="44" y="32.0" text-anchor="end" class="ax">15,000</text>
+<text x="52.0" y="288" text-anchor="middle" class="ax">1月</text>
+<text x="118.0" y="288" text-anchor="middle" class="ax">2月</text>
+<text x="184.0" y="288" text-anchor="middle" class="ax">3月</text>
+<text x="250.0" y="288" text-anchor="middle" class="ax">4月</text>
+<text x="316.0" y="288" text-anchor="middle" class="ax">5月</text>
+<text x="382.0" y="288" text-anchor="middle" class="ax">6月</text>
+<text x="448.0" y="288" text-anchor="middle" class="ax">7月</text>
+<text x="514.0" y="288" text-anchor="middle" class="ax">8月</text>
+<text x="580.0" y="288" text-anchor="middle" class="ax">9月</text>
+<polyline points="52.0,101.9 118.0,55.8 184.0,101.9 250.0,95.2 316.0,92.3 382.0,68.9 448.0,49.4 514.0,187.6 580.0,184.8" fill="none" stroke="#9C8670" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>
+<polyline points="52.0,185.5 118.0,92.4 184.0,164.3 250.0,125.5 316.0,127.5 382.0,216.8 448.0,209.1 514.0,143.7 580.0,78.1" fill="none" stroke="#C08A1E" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="52.0" cy="185.5" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="118.0" cy="92.4" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="184.0" cy="164.3" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="250.0" cy="125.5" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="316.0" cy="127.5" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="382.0" cy="216.8" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="448.0" cy="209.1" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="514.0" cy="143.7" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="580.0" cy="78.1" r="4.5" fill="#C08A1E" stroke="#FFFDF9" stroke-width="2"/>
+<circle cx="52.0" cy="101.9" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="118.0" cy="55.8" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="184.0" cy="101.9" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="250.0" cy="95.2" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="316.0" cy="92.3" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="382.0" cy="68.9" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="448.0" cy="49.4" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="514.0" cy="187.6" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<circle cx="580.0" cy="184.8" r="3.5" fill="#FFFDF9" stroke="#9C8670" stroke-width="2"/>
+<text x="590.0" y="82.1" class="lab" fill="#2E1F0E">2026</text>
+<text x="590.0" y="188.8" class="lab" fill="#7A6248">2025</text>
+<text x="382.0" y="236.8" text-anchor="middle" class="val">3,001</text>
+<text x="576.0" y="68.1" text-anchor="end" class="val">11,814</text>
+<rect class="hov" x="32.0" y="28" width="40" height="236" fill="transparent" data-tip="1月｜2026 CPO 4,989｜2025 同期 10,306"/>
+<rect class="hov" x="98.0" y="28" width="40" height="236" fill="transparent" data-tip="2月｜2026 CPO 10,908｜2025 同期 13,233"/>
+<rect class="hov" x="164.0" y="28" width="40" height="236" fill="transparent" data-tip="3月｜2026 CPO 6,337｜2025 同期 10,306"/>
+<rect class="hov" x="230.0" y="28" width="40" height="236" fill="transparent" data-tip="4月｜2026 CPO 8,805｜2025 同期 10,726"/>
+<rect class="hov" x="296.0" y="28" width="40" height="236" fill="transparent" data-tip="5月｜2026 CPO 8,678｜2025 同期 10,913"/>
+<rect class="hov" x="362.0" y="28" width="40" height="236" fill="transparent" data-tip="6月｜2026 CPO 3,001｜2025 同期 12,401"/>
+<rect class="hov" x="428.0" y="28" width="40" height="236" fill="transparent" data-tip="7月｜2026 CPO 3,491｜2025 同期 13,637"/>
+<rect class="hov" x="494.0" y="28" width="40" height="236" fill="transparent" data-tip="8月｜2026 CPO 7,646｜2025 同期 4,854"/>
+<rect class="hov" x="560.0" y="28" width="40" height="236" fill="transparent" data-tip="9月｜2026 CPO 11,814｜2025 同期 5,032"/>
+<line x1="52" x2="580" y1="264" y2="264" stroke="#C4A882" stroke-width="1"/>
+</svg>
+                <details class="tbl"><summary>查看數據表</summary>
+                    <table><thead><tr><th>月份</th><th>2026 CPO</th><th>2025 CPO</th></tr></thead><tbody><tr><td>1月</td><td>4,989</td><td>10,306</td></tr><tr><td>2月</td><td>10,908</td><td>13,233</td></tr><tr><td>3月</td><td>6,337</td><td>10,306</td></tr><tr><td>4月</td><td>8,805</td><td>10,726</td></tr><tr><td>5月</td><td>8,678</td><td>10,913</td></tr><tr><td>6月</td><td>3,001</td><td>12,401</td></tr><tr><td>7月</td><td>3,491</td><td>13,637</td></tr><tr><td>8月</td><td>7,646</td><td>4,854</td></tr><tr><td>9月</td><td>11,814</td><td>5,032</td></tr></tbody></table>
+                </details>
+            </div>
+
+            <ul class="obs">
+                <li><strong>流量起飛：</strong>5 月曝光不到 3 萬，6 月起每月都有 10 萬以上，7 月達 23 萬。</li>
+                <li><strong>6–7 月成效轉好：</strong>搭配短影音素材投放廣告，CPO 從 8,000 多降到約 3,000，明顯優於去年同期的 12,000–13,000。這段期間也與于美人的介紹有關聯。</li>
+                <li class="down"><strong>8 月起轉弱：</strong>並非流量變少，而是買單變少，因此開始縮減預算；9 月 CPO 升至 11,814。</li>
+            </ul>
+
+            <div class="ask">
+                <div class="k">想與貴司確認</div>
+                <p>以上是廣告後台的數據，我們不確定是否與貴司實際業績連動。想了解<strong>與去年同期相比的實際銷量</strong>：6–8 月是否確實較好、9 月是否大幅下滑？這會幫助我們判斷下一步的方向。</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 六、操作建議 -->
+        <div class="section">
+            <div class="section-label">Recommendation</div>
+            <h2>六、操作建議</h2>
+            <div class="quote">把預算加到短影音流量上，成效比之前都要更好。<small>— 貴司目前的反饋</small></div>
+
+            <div class="prop">
+                <div class="prop-h"><span class="tag">A</span><span class="t">智科 KOL 帳號：一波集中測試</span><span class="badge">主力建議</span></div>
+                <div class="prop-b">
+                    <div class="kpis">
+                        <div class="kpi"><div class="v">20<small> 萬</small></div><div class="l">TTO 總預算（追加 15 萬）</div></div>
+                        <div class="kpi"><div class="v">40<small> 萬+</small></div><div class="l">影片目標曝光（不含脆）</div></div>
+                        <div class="kpi"><div class="v">5010</div><div class="l">益生菌為主</div></div>
+                    </div>
+                    <ul>
+                        <li>一次拿較大預算交給智科，達到其 <strong>20 萬 TTO 門檻</strong></li>
+                        <li>使用表現較好的帳號：<strong>粉絲過千、過萬的 KOL 帳號</strong>投稿</li>
+                        <li>用影音帶出<strong>真實流量、分享與討論度</strong></li>
+                    </ul>
+                    <div class="guarantee"><strong>成效保障：</strong>如果業績依舊不振，<strong>夸克創意負擔 5 萬</strong>。成效好壞以貴司的判斷標準為主。</div>
+                </div>
+            </div>
+
+            <div class="prop">
+                <div class="prop-h"><span class="tag">B</span><span class="t">廣告操作：維持現有預算</span></div>
+                <div class="prop-b">
+                    <ul>
+                        <li>廣告預算維持原本規模即可</li>
+                        <li>持續將短影音內容作為廣告素材投放</li>
+                        <li>現階段<strong>不建議強力往上加</strong>廣告預算，先以短影音流量為主力</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div>
+            <div class="footer-brand">夸克創意 QoooQ CREATIVE</div>
+            <div class="footer-tagline">We Make Your Brand Viral.</div>
+        </div>
+        <div class="footer-contact">takara@ilha.tw<br>qoooq.tw</div>
+    </div>
+
+</div>
+<script>
+document.querySelectorAll('.chart-box').forEach(function (box) {
+    var tip = document.createElement('div'); tip.className = 'tip'; box.appendChild(tip);
+    box.querySelectorAll('.hov').forEach(function (el) {
+        el.addEventListener('mousemove', function (e) {
+            var r = box.getBoundingClientRect();
+            tip.textContent = el.getAttribute('data-tip');
+            var x = e.clientX - r.left + 12, y = e.clientY - r.top - 34;
+            if (x + tip.offsetWidth > r.width) x = e.clientX - r.left - tip.offsetWidth - 12;
+            tip.style.left = x + 'px'; tip.style.top = y + 'px'; tip.style.opacity = 1;
+        });
+        el.addEventListener('mouseleave', function () { tip.style.opacity = 0; });
+    });
+});
+</script>
+</body>
+</html>
