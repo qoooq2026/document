@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>夸克創意 服務介紹（社外秘）</title>
+<style>
+  :root{
+    --bg:#f6f5f2; --card:#ffffff; --ink:#1d1d1f; --muted:#6b6b70; --line:#e4e2dc;
+    --jp:#c8102e; --jp-soft:#fbe9ec; --tw:#0b6e99; --tw-soft:#e6f3f8;
+    --accent:#1d1d1f; --warn:#b00020; --warn-soft:#fff0f1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141416; --card:#1e1e21; --ink:#f2f2f2; --muted:#a3a3aa; --line:#2f2f34;
+      --jp:#ff5a6e; --jp-soft:#3a1a20; --tw:#4fb6e0; --tw-soft:#13303c;
+      --accent:#f2f2f2; --warn:#ff6b7d; --warn-soft:#3a1519;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141416; --card:#1e1e21; --ink:#f2f2f2; --muted:#a3a3aa; --line:#2f2f34;
+    --jp:#ff5a6e; --jp-soft:#3a1a20; --tw:#4fb6e0; --tw-soft:#13303c;
+    --accent:#f2f2f2; --warn:#ff6b7d; --warn-soft:#3a1519;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    line-height:1.7; font-size:16px;
+  }
+  /* 社外秘 top bar */
+  .secret-bar{
+    position:sticky; top:0; z-index:50;
+    background:var(--warn); color:#fff; text-align:center;
+    font-weight:700; letter-spacing:.15em; padding:8px 16px; font-size:14px;
+  }
+  /* watermark */
+  .watermark{
+    position:fixed; inset:0; pointer-events:none; z-index:40; overflow:hidden; opacity:.06;
+  }
+  .watermark div{
+    position:absolute; left:-50%; width:200%; transform:rotate(-24deg);
+    white-space:nowrap; font-size:42px; font-weight:900; color:var(--warn); letter-spacing:.2em;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:32px 16px 64px; position:relative; z-index:1}
+  header.hero{padding:24px 0 32px; border-bottom:2px solid var(--ink); margin-bottom:40px}
+  .stamp{
+    display:inline-block; border:3px solid var(--warn); color:var(--warn);
+    padding:4px 14px; font-weight:900; font-size:20px; letter-spacing:.2em;
+    transform:rotate(-4deg); border-radius:4px; margin-bottom:16px;
+  }
+  h1{font-size:clamp(28px,5vw,44px); margin:0 0 8px; line-height:1.25}
+  .sub{color:var(--muted); margin:0}
+  h2{font-size:clamp(22px,3.6vw,30px); margin:56px 0 8px; line-height:1.3}
+  h3{font-size:19px; margin:0 0 6px}
+  .lead{color:var(--muted); margin:0 0 24px}
+  .tag{display:inline-block; font-size:13px; font-weight:700; padding:2px 10px; border-radius:99px; margin-bottom:10px}
+  .tag.jp{background:var(--jp-soft); color:var(--jp)}
+  .tag.tw{background:var(--tw-soft); color:var(--tw)}
+
+  .grid{display:grid; gap:16px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px}
+  .card.jp{border-top:5px solid var(--jp)}
+  .card.tw{border-top:5px solid var(--tw)}
+  .card p{margin:0}
+  .price{
+    margin-top:12px; padding-top:12px; border-top:1px dashed var(--line);
+    font-weight:700; font-size:15px;
+  }
+  .price small{display:block; font-weight:400; color:var(--muted); font-size:13px}
+
+  .branch{display:block; text-decoration:none; color:inherit}
+  .branch .big{font-size:26px; font-weight:800; margin:4px 0}
+  .branch ul{margin:8px 0 0; padding-left:20px}
+
+  .why{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px; margin-top:16px}
+  .why ol{margin:8px 0 0; padding-left:22px}
+  .why li{margin:6px 0}
+  .callout{border-left:4px solid var(--jp); background:var(--jp-soft); padding:14px 18px; border-radius:0 10px 10px 0; margin-top:16px}
+  .callout.tw{border-left-color:var(--tw); background:var(--tw-soft)}
+
+  .flow{display:flex; flex-wrap:wrap; gap:10px; align-items:stretch; margin-top:16px}
+  .flow .step{flex:1 1 180px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px}
+  .flow .num{display:inline-flex; width:28px; height:28px; border-radius:50%; align-items:center; justify-content:center; background:var(--tw); color:#fff; font-weight:800; font-size:14px; margin-bottom:6px}
+  .flow .arrow{align-self:center; color:var(--muted); font-size:22px}
+
+  .clients{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+  .clients span{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 18px; font-weight:700}
+
+  table{width:100%; border-collapse:collapse; background:var(--card); border-radius:14px; overflow:hidden; border:1px solid var(--line)}
+  th,td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; font-size:15px}
+  th{background:var(--bg); font-size:14px; color:var(--muted)}
+  td:first-child{font-weight:700; white-space:nowrap}
+  .table-wrap{overflow-x:auto}
+
+  footer{margin-top:64px; padding:20px; border:2px solid var(--warn); background:var(--warn-soft); border-radius:12px; color:var(--warn); text-align:center; font-weight:700}
+  footer small{display:block; font-weight:400; margin-top:4px}
+
+  @media print{
+    .secret-bar{position:static}
+    .watermark{opacity:.08}
+    .card,.why,table{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="secret-bar">【社外秘】本資料僅限公司內部使用・禁止轉傳、截圖或對外洩漏</div>
+<div class="watermark" aria-hidden="true">
+  <div style="top:8%">社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL</div>
+  <div style="top:30%">社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL</div>
+  <div style="top:52%">社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL</div>
+  <div style="top:74%">社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL</div>
+  <div style="top:96%">社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL 社外秘 CONFIDENTIAL</div>
+</div>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div class="stamp">社外秘</div>
+    <h1>夸克創意 QoooQ<br>服務與收費策略說明</h1>
+    <p class="sub">兩大服務支線：日系客戶 ／ 台灣客戶</p>
+  </header>
+
+  <!-- Overview -->
+  <section>
+    <h2>總覽：兩條服務支線</h2>
+    <p class="lead">同樣是短影音與行銷，但兩邊客戶的處境不同，所以策略也不同。</p>
+    <div class="grid g2">
+      <a class="card jp branch" href="#jp">
+        <span class="tag jp">支線一</span>
+        <div class="big">日系客戶</div>
+        <p>在台灣的<strong>一條龍 BPO</strong>，用低價營運服務綁定其他高價值服務。</p>
+        <ul>
+          <li>商城代營運</li><li>行銷企劃（Banner／LP）</li><li>CRM（LINE@）</li><li>廣告投放（Meta／Google）</li><li>短影音</li>
+        </ul>
+      </a>
+      <a class="card tw branch" href="#tw">
+        <span class="tag tw">支線二</span>
+        <div class="big">台灣客戶</div>
+        <p>以<strong>大型上市公司</strong>為主，承接其既有廣告預算，用成效爭取更多預算。</p>
+        <ul>
+          <li>短影音曝光</li><li>短影音素材授權</li><li>短影音廣告投放</li>
+        </ul>
+      </a>
+    </div>
+  </section>
+
+  <!-- Japan -->
+  <section id="jp">
+    <h2>支線一｜日系客戶：台灣一條龍 BPO</h2>
+    <p class="lead">從開店、行銷、投廣到顧客經營，日系品牌進台灣需要的事情我們一次包辦。</p>
+
+    <div class="grid g3">
+      <div class="card jp">
+        <h3>商城代營運</h3>
+        <p>代為經營電商商城日常營運。</p>
+        <div class="price">超低價固定費<small>市場行情：月費 10 萬以上＋業績抽成</small></div>
+      </div>
+      <div class="card jp">
+        <h3>行銷企劃</h3>
+        <p>Banner、Landing Page 製作與優化。</p>
+        <div class="price">Banner　2,000 元／張<br>LP　25,000～40,000 元／張</div>
+      </div>
+      <div class="card jp">
+        <h3>CRM 顧客關係</h3>
+        <p>規劃舊客回購策略、經營 LINE@ 自動化行銷，設計與設定整套完成。</p>
+        <div class="price">固定費 50,000～65,000 元／月<small>或 業績抽成 7～10%</small></div>
+      </div>
+      <div class="card jp">
+        <h3>廣告投放</h3>
+        <p>Meta、Google 廣告代投放。短影音素材可直接共用為廣告素材，替客戶省下素材製作費。</p>
+        <div class="price">廣告預算的 15%<small>例：客戶投入 10 萬，我們收 1.5 萬</small></div>
+      </div>
+      <div class="card jp">
+        <h3>短影音</h3>
+        <p>KOC 短影音製作與發布，兩種計價可選。</p>
+        <div class="price">① 曝光計價：0.2～0.4 元／次<br>② 營收抽成：每件銷售 ○○○ 元</div>
+      </div>
+    </div>
+
+    <div class="why">
+      <h3>為什麼商城代營運要賣「超低價」？</h3>
+      <ol>
+        <li><strong>市場代操太貴，客戶撐不住。</strong>月費 10 萬以上再加抽成，很多廠商直接卻步；就算簽了，幾個月赤字後也會撤退。</li>
+        <li><strong>降低客戶風險，換取長期測試。</strong>我們在代營運上幾乎不賺錢，但客戶的投資成本與風險變小，才願意長期留在台灣測試市場。</li>
+        <li><strong>用低價營運綁住高價值服務。</strong>客戶留下來，我們就能持續提供行銷企劃、CRM、廣告、短影音等服務，並累積銷售 know-how。</li>
+        <li><strong>難以被取代。</strong>這個價格其他廠商不容易跟進，是我們最重要的綁定策略。</li>
+      </ol>
+    </div>
+
+    <div class="why">
+      <h3>短影音：曝光計價 vs. 營收抽成</h3>
+      <div class="table-wrap">
+      <table>
+        <tr><th></th><th>① 曝光計價</th><th>② 營收抽成</th></tr>
+        <tr><td>收入來源</td><td>每次曝光 0.2～0.4 元</td><td>每賣出一件抽 ○○○ 元</td></tr>
+        <tr><td>穩定性</td><td>穩定、可預期</td><td>取決於商品是否賣得動</td></tr>
+        <tr><td>上限</td><td>有天花板</td><td>賣得起來時遠高於 ①</td></tr>
+        <tr><td>對客戶</td><td>需先付費</td><td>低風險，更願意長期測試台灣</td></tr>
+      </table>
+      </div>
+      <div class="callout">
+        <strong>實例：SS 日系客戶「珂貝思」</strong>——當商品真的賣起來時，② 的收入遠大於 ① 的曝光收費。<br>
+        ② 目前賺不到錢，純粹是我們<strong>還沒有讓客戶商品賣出去的能力</strong>，而不是模式本身的問題。
+        加上我們另有固定費收入，整包算下來<strong>沒有虧錢，只是還沒賺錢</strong>；同時換到持續累積作品與 know-how 的機會。
+      </div>
+    </div>
+  </section>
+
+  <!-- Taiwan -->
+  <section id="tw">
+    <h2>支線二｜台灣客戶：承接預算、用成效放大</h2>
+    <p class="lead">台灣客戶結構單純，重點是證明我們的預算效率比他們原本的廣告更好。</p>
+
+    <div class="grid g3">
+      <div class="card tw">
+        <span class="tag tw">提案 1</span>
+        <h3>短影音曝光</h3>
+        <p>KOC 短影音曝光，按曝光計價。</p>
+        <div class="price">0.6 元／曝光<small>並設定費用上限</small></div>
+      </div>
+      <div class="card tw">
+        <span class="tag tw">提案 2</span>
+        <h3>短影音素材授權</h3>
+        <p>客戶取得短影音素材的使用授權。</p>
+        <div class="price">5,000～10,000 元／支／年</div>
+      </div>
+      <div class="card tw">
+        <span class="tag tw">提案 3</span>
+        <h3>短影音廣告投放</h3>
+        <p>由我們製作影音素材並代投放，可與提案 2 結合。</p>
+        <div class="price">廣告費 20% 傭金</div>
+      </div>
+    </div>
+
+    <div class="why">
+      <h3>為什麼台灣客戶比較穩？</h3>
+      <ol>
+        <li><strong>已在台灣深耕，不會撤退。</strong>除非是新品，否則沒有「做不起來就離開台灣」的問題。</li>
+        <li><strong>預算本來就存在。</strong>客戶是把原有的廣告預算撥一部分給我們，不是從零開始投資。</li>
+        <li><strong>成效好，預算就會轉過來。</strong>只要我們的轉換效率比原本的廣告支出更好，客戶自然會逐步把更多預算移到我們這邊，營收跟著成長。</li>
+      </ol>
+      <div class="callout tw">
+        對比日系客戶「做不起來就撤退」，台灣客戶的營收基礎穩定許多。
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px">重點客戶（以上市公司為主）</h3>
+    <div class="clients">
+      <span>佳格</span><span>美吾華</span><span>軒郁</span><span>新普利</span>
+    </div>
+
+    <h3 style="margin-top:32px">成長策略：扶植重點客戶，漸進式提案</h3>
+    <div class="flow">
+      <div class="step"><span class="num">1</span><h3>曝光</h3><p>先用曝光計價建立合作、證明成效。</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">2</span><h3>素材授權</h3><p>把表現好的影片延伸為客戶的素材資產。</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">3</span><h3>廣告投放</h3><p>素材＋投放一起做，承接更大的廣告預算。</p></div>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section>
+    <h2>兩條支線比較</h2>
+    <div class="table-wrap">
+    <table>
+      <tr><th></th><th>日系客戶</th><th>台灣客戶</th></tr>
+      <tr><td>服務型態</td><td>一條龍 BPO（營運＋行銷＋CRM＋廣告＋短影音）</td><td>短影音為核心（曝光／素材／投放）</td></tr>
+      <tr><td>定價策略</td><td>低價固定費綁定，降低客戶進入門檻</td><td>依成效爭取既有廣告預算</td></tr>
+      <tr><td>主要風險</td><td>商品賣不動 → 客戶撤出台灣</td><td>成效不如客戶原有管道</td></tr>
+      <tr><td>對我們的價值</td><td>長期客戶關係、累積作品與銷售 know-how</td><td>穩定營收、預算可逐步放大</td></tr>
+      <tr><td>成長關鍵</td><td>提升「讓商品賣出去」的能力，放大營收抽成</td><td>扶植重點上市客戶，漸進式提案 1→3</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <footer>
+    社外秘・CONFIDENTIAL　禁止洩漏
+    <small>本資料內容（含收費、策略與客戶名稱）僅供夸克創意股份有限公司內部使用，未經許可不得轉傳、複製或提供予第三方。</small>
+  </footer>
+
+</main>
+</body>
+</html>
